@@ -1,0 +1,2 @@
+#!/bin/sh
+npx --no-install commitlint --config commitlint.config.ts --edit "$1"

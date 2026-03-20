@@ -1,17 +1,56 @@
 {
   "name": "exp-gen",
   "version": "1.0.0",
-  "description": "",
-  "main": "validate-pkg-name.js",
+  "description": "This is a very simple and small generator for creating Express.js projects with TypeScript or Javascript. You can use it to quickly start a new API project.",
+  "main": "bin/script.ts",
   "scripts": {
-    "start": "node validate-pkg-name.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "ts-node bin/script.ts",
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
+  "author": "Madhusha Prasad <madushaprasad21@gmail.com> (https://github.com/MadhushaPrasad)",
+  "license": "MIT",
+  "type": "module",
+  "preferGlobal": true,
+  "files": [
+    "LICENSE",
+    "bin/",
+    "templates/"
+  ],
   "devDependencies": {
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^25.5.0",
+    "@typescript-eslint/eslint-plugin": "^8.57.1",
+    "@typescript-eslint/parser": "^8.57.1",
+    "eslint": "^10.0.3",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "globals": "^17.4.0",
+    "husky": "^9.1.7",
+    "jiti": "^2.6.1",
+    "prettier": "^3.8.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.57.1",
     "validate-npm-package-name": "^7.0.2"
-  }
+  },
+  "lint-staged": {
+    "*.{js,ts,json,md}": [
+      "prettier --write",
+      "eslint"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Open-Core-Lab/exp-gen.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Open-Core-Lab/exp-gen/issues"
+  },
+  "homepage": "https://github.com/Open-Core-Lab/exp-gen#readme"
 }
