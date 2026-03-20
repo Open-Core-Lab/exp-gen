@@ -11,8 +11,8 @@
     "prepare": "husky"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Madhusha Prasad <madushaprasad21@gmail.com> (https://github.com/MadhushaPrasad)",
+  "license": "MIT",
   "type": "module",
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",
@@ -32,6 +32,12 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.57.1",
     "validate-npm-package-name": "^7.0.2"
+  },
+  "lint-staged": {
+    "*.{js,ts,json,md}": [
+      "prettier --write",
+      "eslint"
+    ]
   },
   "repository": {
     "type": "git",
