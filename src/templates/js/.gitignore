@@ -132,6 +132,3 @@ dist
 
 ## OS X
 .DS_Store
-
-src/templates/js/package.json
-src/templates/js/package-lock.json
