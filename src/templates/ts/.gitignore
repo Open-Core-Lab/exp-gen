@@ -83,13 +83,6 @@ web_modules/
 .cache
 .parcel-cache
 
-# Next.js build output
-.next
-out
-
-# Nuxt.js build / generate output
-.nuxt
-dist
 
 # Gatsby files
 .cache/
@@ -132,14 +125,3 @@ dist
 
 ## OS X
 .DS_Store
-
-src/templates/js/.env
-src/templates/js/node_modules
-src/templates/js/package.json
-src/templates/js/package-lock.json
-
-
-src/templates/ts/.env
-src/templates/ts/node_modules
-src/templates/ts/package.json
-src/templates/ts/package-lock.json
