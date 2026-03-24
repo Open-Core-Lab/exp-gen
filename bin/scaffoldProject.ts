@@ -2,9 +2,9 @@ import * as p from "@clack/prompts";
 import pc from "picocolors";
 import fs from "fs";
 import path from "path";
-import { execSync } from "child_process";
 import { ProjectConfig } from "./type/projectConfig.js";
 import copyDir from "./copyDir.js";
+import { installProjectDependencies } from "./installDependencies.js";
 
 async function scaffoldProject(config: ProjectConfig) {
   const cwd = process.cwd();
@@ -12,8 +12,6 @@ async function scaffoldProject(config: ProjectConfig) {
   // 📁 Resolve project directory
   const isCurrentDir = config.name === ".";
   const projectPath = isCurrentDir ? cwd : path.join(cwd, config.name);
-
-  const projectName = isCurrentDir ? path.basename(cwd) : config.name;
 
   // 📁 Check if directory exists
   if (!fs.existsSync(projectPath)) {
@@ -58,25 +56,10 @@ async function scaffoldProject(config: ProjectConfig) {
   }
 
   // 📂 Copy template files
-  copyDir(templatePath, projectPath);
+  copyDir(templatePath, projectPath, config);
 
-  // 📝 Update package.json
-  const pkgPath = path.join(projectPath, "package.json");
-  if (fs.existsSync(pkgPath)) {
-    const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
-    pkg.name = projectName;
-
-    fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
-  }
-
-  // 📦 Install dependencies
-  if (config.install) {
-    console.log(pc.dim("\n📦 Installing dependencies..."));
-    execSync("npm install", {
-      cwd: projectPath,
-      stdio: "inherit",
-    });
-  }
+  // Run the new dependency logic
+  await installProjectDependencies(config, projectPath);
 
   console.log(pc.green("\n✔ Project scaffolded successfully!\n"));
 }
