@@ -28,7 +28,6 @@ function runCommand(
   });
 }
 
-
 // install project dependencies
 export async function installProjectDependencies(
   config: ProjectConfig,

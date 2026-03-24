@@ -1,14 +1,10 @@
 #!/usr/bin/env node
 
 import * as p from "@clack/prompts";
-
 import pc from "picocolors";
-
 import logSymbols from "log-symbols";
-
-import type { ProjectConfig } from "./type/projectConfig";
-
-import scaffoldProject from "./scaffoldProject";
+import type { ProjectConfig } from "./type/projectConfig.js";
+import scaffoldProject from "./scaffoldProject.js";
 
 async function safePrompt<T>(value: Promise<T | symbol>): Promise<T> {
   const result = await value;
@@ -37,12 +33,9 @@ async function main() {
         safePrompt(
           p.text({
             message: "Project name",
-
             placeholder: "my-express-api",
-
             validate: (value) => {
               if (!value) return "Project name is required";
-
               if (value.includes(" "))
                 return "Spaces are not allowed in project names";
             },
@@ -53,23 +46,17 @@ async function main() {
         safePrompt(
           p.select({
             message: "Choose language",
-
             initialValue: "ts",
-
             options: [
               {
                 value: "ts",
-
                 label: pc.blue("TypeScript"),
-
                 hint: pc.dim("Recommended"),
               },
 
               {
                 value: "js",
-
                 label: pc.yellow("JavaScript"),
-
                 hint: pc.dim("Lightweight & fast setup"),
               },
             ],
@@ -84,9 +71,7 @@ async function main() {
             options: [
               {
                 value: "mongodb",
-
                 label: pc.green("MongoDB"),
-
                 hint: "via Mongoose (Available ✅)",
               },
 
@@ -94,33 +79,25 @@ async function main() {
 
               {
                 value: "mysql",
-
                 label: pc.yellow("MySQL"),
-
                 hint: pc.dim("Coming soon"),
               },
 
               {
                 value: "sqlite",
-
                 label: pc.gray("SQLite"),
-
                 hint: pc.dim("Coming soon"),
               },
 
               {
                 value: "postgresql",
-
                 label: pc.magenta("PostgreSQL"),
-
                 hint: pc.dim("Coming soon (Prisma)"),
               },
 
               {
                 value: "none",
-
                 label: pc.dim("None"),
-
                 hint: "Skip database setup",
               },
             ],
@@ -131,7 +108,6 @@ async function main() {
         safePrompt(
           p.confirm({
             message: `Install dependencies using ${pc.magenta("npm")}?`,
-
             initialValue: true,
           })
         ),
@@ -140,19 +116,15 @@ async function main() {
     {
       onCancel: () => {
         p.cancel(pc.red("Setup cancelled."));
-
         process.exit(0);
       },
     }
   );
 
-  // 🚫 Stop if user selected a "coming soon" DB
-
+  //Stop if user selected a "coming soon" DB
   const comingSoonDBs: ProjectConfig["db"][] = [
     "mysql",
-
     "sqlite",
-
     "postgresql",
   ];
 
@@ -183,29 +155,21 @@ async function main() {
 
   p.note(
     `${pc.bold("Project:")} ${pc.cyan(project.name)}
-
-${pc.bold("Language:")} ${langLabel}
-
-${pc.bold("Database:")} ${pc.green(project.db)}
-
-${pc.bold("Install deps:")} ${project.install ? "Yes" : "No"}`,
-
+    ${pc.bold("Language:")} ${langLabel}
+    ${pc.bold("Database:")} ${pc.green(project.db)}
+    ${pc.bold("Install deps:")} ${project.install ? "Yes" : "No"}`,
     "Configuration Summary"
   );
 
   p.outro(`${pc.bold("Next steps")}
+  ${pc.cyan(`cd ${project.name}`)}
+  ${
+    project.install
+      ? pc.cyan("npm run dev")
+      : pc.cyan("npm install && npm run dev")
+  }
 
-${pc.cyan(`cd ${project.name}`)}
-
-${
-  project.install
-    ? pc.cyan("npm run dev")
-    : pc.cyan("npm install && npm run dev")
-}
-
-
-
-${pc.green("Happy coding! 🚀")}`);
+  ${pc.green("Happy coding! 🚀")}`);
 }
 
 main().catch((err) => {
