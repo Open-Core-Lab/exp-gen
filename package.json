@@ -3,30 +3,62 @@
   "version": "1.0.0",
   "description": "This is a very simple and small generator for creating Express.js projects with TypeScript or Javascript. You can use it to quickly start a new API project.",
   "main": "bin/script.ts",
+  "bin": {
+    "exp": "dist/script.js",
+    "express-draft": "dist/script.js",
+    "gen": "dist/script.js"
+  },
   "scripts": {
+    "build": "tsc && npm run copy-templates",
+    "copy-templates": "tsx bin/copyTemplates.ts",
     "dev": "tsx --no-watch bin/script.ts",
     "format": "prettier --write .",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky"
+    "prepare": "husky && npm run build"
   },
-  "keywords": [],
-  "author": "Madhusha Prasad <madushaprasad21@gmail.com> (https://github.com/MadhushaPrasad)",
-  "license": "MIT",
-  "type": "module",
   "preferGlobal": true,
   "files": [
-    "LICENSE",
     "bin/",
-    "templates/"
+    "LICENSE",
+    "src/templates/",
+    "README.md"
   ],
+  "author": "Madhusha Prasad <madushaprasad21@gmail.com> (https://github.com/MadhushaPrasad)",
+  "license": "MIT",
+  "keywords": [
+    "express",
+    "generator",
+    "scaffold",
+    "cli",
+    "typescript",
+    "framework",
+    "express-draft",
+    "exp",
+    "express api scaffolding",
+    "web",
+    "rest",
+    "restful",
+    "router",
+    "api"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Open-Core-Lab/exp-gen.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Open-Core-Lab/exp-gen/issues"
+  },
+  "type": "module",
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",
     "@commitlint/config-conventional": "^20.5.0",
     "@eslint/js": "^10.0.1",
+    "@types/fs-extra": "^11.0.4",
     "@types/node": "^25.5.0",
     "@typescript-eslint/eslint-plugin": "^8.57.1",
     "@typescript-eslint/parser": "^8.57.1",
+    "copyfiles": "^2.4.1",
     "eslint": "^10.0.3",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
@@ -45,16 +77,10 @@
       "eslint"
     ]
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Open-Core-Lab/exp-gen.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Open-Core-Lab/exp-gen/issues"
-  },
   "homepage": "https://github.com/Open-Core-Lab/exp-gen#readme",
   "dependencies": {
     "@clack/prompts": "^1.1.0",
+    "fs-extra": "^11.3.4",
     "log-symbols": "^7.0.1",
     "picocolors": "^1.1.1"
   }
