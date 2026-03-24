@@ -4,7 +4,7 @@
   "description": "This is a very simple and small generator for creating Express.js projects with TypeScript or Javascript. You can use it to quickly start a new API project.",
   "main": "bin/script.ts",
   "scripts": {
-    "dev": "ts-node bin/script.ts",
+    "dev": "tsx --no-watch bin/script.ts",
     "format": "prettier --write .",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -34,7 +34,7 @@
     "husky": "^9.1.7",
     "jiti": "^2.6.1",
     "prettier": "^3.8.1",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.57.1",
     "validate-npm-package-name": "^7.0.2"
