@@ -1,5 +1,5 @@
 import { User } from "../models/user.model.js";
-import { CreateUserDTO, UpdateUserDTO } from "../dtos/user.dto";
+import { CreateUserDTO, UpdateUserDTO } from "../dtos/user.dto.js";
 
 export const getAllUsers = async () => {
   return await User.find({});

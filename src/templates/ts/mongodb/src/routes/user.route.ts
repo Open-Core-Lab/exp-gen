@@ -6,7 +6,7 @@ import {
   updateUser,
   deleteUser,
 } from "../controllers/user.controller.js";
-import { protect } from "../middlewares/auth.middleware";
+import { protect } from "../middlewares/auth.middleware.js";
 import { successResponse } from "../utils/response.js";
 import type { Request, Response } from "express";
 

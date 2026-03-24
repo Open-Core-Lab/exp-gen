@@ -52,5 +52,10 @@
   "bugs": {
     "url": "https://github.com/Open-Core-Lab/exp-gen/issues"
   },
-  "homepage": "https://github.com/Open-Core-Lab/exp-gen#readme"
+  "homepage": "https://github.com/Open-Core-Lab/exp-gen#readme",
+  "dependencies": {
+    "@clack/prompts": "^1.1.0",
+    "log-symbols": "^7.0.1",
+    "picocolors": "^1.1.1"
+  }
 }
