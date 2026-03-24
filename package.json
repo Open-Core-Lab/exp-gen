@@ -9,7 +9,7 @@
     "gen": "dist/script.js"
   },
   "scripts": {
-    "build": "tsc && npm run copyTemplates",
+    "build": "tsc && npm run copy-templates",
     "copy-templates": "tsx bin/copyTemplates.ts",
     "dev": "tsx --no-watch bin/script.ts",
     "format": "prettier --write .",

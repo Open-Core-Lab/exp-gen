@@ -72,7 +72,7 @@ async function main() {
               {
                 value: "mongodb",
                 label: pc.green("MongoDB"),
-                hint: "via Mongoose (Available ✅)",
+                hint: "via Mongoose (Available)",
               },
 
               // 🚧 Coming Soon
