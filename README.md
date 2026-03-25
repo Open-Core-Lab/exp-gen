@@ -30,6 +30,8 @@ express-draft
 
 Run `exp` in your terminal. The interactive CLI (powered by `@clack/prompts`) will guide you through the setup:
 
+![exp-gen](https://github.com/user-attachments/assets/e91f908a-ad90-4498-9c18-973655ed99a9)
+
 - **Project Name:** Enter your project folder name (e.g., `my-api`).
 - **Language:** Choose between **TypeScript** (Recommended) or **JavaScript**.
 - **Database:** Select your preferred database.
