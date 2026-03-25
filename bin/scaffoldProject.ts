@@ -5,6 +5,11 @@ import path from "path";
 import { ProjectConfig } from "./type/projectConfig.js";
 import copyDir from "./copyDir.js";
 import { installProjectDependencies } from "./installDependencies.js";
+import { fileURLToPath } from "url";
+
+// __dirname replacement for ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 async function scaffoldProject(config: ProjectConfig) {
   const cwd = process.cwd();
@@ -42,13 +47,11 @@ async function scaffoldProject(config: ProjectConfig) {
 
   // 📦 Template path
   const templatePath = path.join(
-    process.cwd(),
-    "src/templates",
+    __dirname,
+    "../src/templates",
     config.language,
     config.db === "mongodb" ? "mongodb" : "none"
   );
-
-  // console.log(templatePath)
 
   if (!fs.existsSync(templatePath)) {
     p.cancel(pc.red("Template not found. Something went wrong."));
