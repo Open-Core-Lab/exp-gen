@@ -5,7 +5,12 @@ import { defineConfig } from "eslint/config";
 
 export default defineConfig([
   {
-    ignores: ["node_modules/**", "commitlint.config.ts", "src/templates/ts/**"],
+    ignores: [
+      "node_modules/**",
+      "commitlint.config.ts",
+      "src/templates/ts/**",
+      "dist/**/*",
+    ],
   },
   {
     files: [
