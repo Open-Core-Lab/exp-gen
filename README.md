@@ -30,12 +30,12 @@ express-draft
 
 Run `exp` in your terminal. The interactive CLI (powered by `@clack/prompts`) will guide you through the setup:
 
-* **Project Name:** Enter your project folder name (e.g., `my-api`).
-* **Language:** Choose between **TypeScript** (Recommended) or **JavaScript**.
-* **Database:** Select your preferred database.
-  * *Currently Supported:* **MongoDB** (via Mongoose).
-  * *Coming Soon:* MySQL, PostgreSQL (Prisma), and SQLite.
-* **Install Dependencies:** Choose `Yes` to let the CLI run `npm install` for you automatically.
+- **Project Name:** Enter your project folder name (e.g., `my-api`).
+- **Language:** Choose between **TypeScript** (Recommended) or **JavaScript**.
+- **Database:** Select your preferred database.
+  - _Currently Supported:_ **MongoDB** (via Mongoose).
+  - _Coming Soon:_ MySQL, PostgreSQL (Prisma), and SQLite.
+- **Install Dependencies:** Choose `Yes` to let the CLI run `npm install` for you automatically.
 
 ### 2. Navigate and Run
 
@@ -52,17 +52,17 @@ npm run dev
 
 `exp-gen` scaffolds a professional **Layered Architecture**, ensuring your code remains scalable and maintainable as it grows:
 
-* **`configs/`**: Environment variables and database connection logic.
-* **`controllers/`**: Bridges the routes and the business logic; handles requests/responses.
-* **`dtos/`**: Data Transfer Objects for validating and shaping incoming data.
-* **`interfaces/`**: TypeScript interfaces and types for strict type safety.
-* **`middlewares/`**: Custom Express middlewares (Auth, Error handling, Logging).
-* **`models/`**: Database schemas (e.g., Mongoose/MongoDB models).
-* **`repositories/`**: The data access layer; handles direct database operations.
-* **`routes/`**: API endpoint definitions and mapping to controllers.
-* **`services/`**: Core Business Logic layer; where the heavy lifting happens.
-* **`utils/`**: Shared helper functions and utility classes.
-* **`app.ts`**: The application entry point.
+- **`configs/`**: Environment variables and database connection logic.
+- **`controllers/`**: Bridges the routes and the business logic; handles requests/responses.
+- **`dtos/`**: Data Transfer Objects for validating and shaping incoming data.
+- **`interfaces/`**: TypeScript interfaces and types for strict type safety.
+- **`middlewares/`**: Custom Express middlewares (Auth, Error handling, Logging).
+- **`models/`**: Database schemas (e.g., Mongoose/MongoDB models).
+- **`repositories/`**: The data access layer; handles direct database operations.
+- **`routes/`**: API endpoint definitions and mapping to controllers.
+- **`services/`**: Core Business Logic layer; where the heavy lifting happens.
+- **`utils/`**: Shared helper functions and utility classes.
+- **`app.ts`**: The application entry point.
 
 ---
 
@@ -92,4 +92,4 @@ This project is licensed under the **[MIT License](https://github.com/Open-Core-
 
 ---
 
-**Happy coding! 🚀** *Maintained by [Madhusha Prasad](https://github.com/MadhushaPrasad)*
+**Happy coding! 🚀** _Maintained by [Madhusha Prasad](https://github.com/MadhushaPrasad)_
