@@ -14,7 +14,7 @@ function runCommand(
     const spinner = p.spinner();
     spinner.start(spinnerText);
 
-    const child = spawn(command, args, { cwd, shell: true });
+    const child = spawn(command, args, { cwd });
 
     child.on("exit", (code) => {
       if (code === 0) {
