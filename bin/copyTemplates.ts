@@ -19,18 +19,23 @@ async function copyAssets() {
     console.log("✅ Templates copied to dist/src/templates");
 
     // List of root files to copy
-    const filesToCopy = [".gitignore", "LICENSE", "README.md", "package.json"];
+    const filesToCopy = [
+      { src: ".gitignore", dest: ".gitignore" },
+      { src: "LICENSE", dest: "LICENSE" },
+      { src: "README.md", dest: "README.md" },
+      { src: "package-config/package.json", dest: "package.json" },
+    ];
 
     for (const file of filesToCopy) {
-      const srcFile = path.resolve(rootDir, file);
-      const destFile = path.resolve(distDir, file);
+      const srcFile = path.resolve(rootDir, file.src);
+      const destFile = path.resolve(distDir, file.dest);
 
       // Check if file exists before copying to avoid errors
       if (await fs.pathExists(srcFile)) {
         await fs.copy(srcFile, destFile);
-        console.log(`✅ ${file} copied to dist/`);
+        console.log(`✅ ${file.src} copied to dist/${file.dest}`);
       } else {
-        console.warn(`⚠️ Warning: ${file} not found in root, skipping.`);
+        console.warn(`⚠️ Warning: ${file.src} not found in root, skipping.`);
       }
     }
 
