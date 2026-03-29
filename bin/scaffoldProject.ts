@@ -50,7 +50,7 @@ async function scaffoldProject(config: ProjectConfig) {
     __dirname,
     "../src/templates",
     config.language,
-    config.db === "mongodb" ? "mongodb" : "none"
+    config.db
   );
 
   if (!fs.existsSync(templatePath)) {
@@ -59,7 +59,7 @@ async function scaffoldProject(config: ProjectConfig) {
   }
 
   // 📂 Copy template files
-  copyDir(templatePath, projectPath, config);
+  await copyDir(templatePath, projectPath, config);
 
   // Run the new dependency logic
   await installProjectDependencies(config, projectPath);
