@@ -104,6 +104,12 @@ async function main() {
                 hint: "via Mongoose (Available)",
               },
 
+              {
+                value: "postgresql",
+                label: pc.green("PostgreSQL"),
+                hint: "via PostgreSQL (Available)",
+              },
+
               // 🚧 Coming Soon
 
               {
@@ -116,12 +122,6 @@ async function main() {
                 value: "sqlite",
                 label: pc.gray("SQLite"),
                 hint: pc.dim("Coming soon"),
-              },
-
-              {
-                value: "postgresql",
-                label: pc.magenta("PostgreSQL"),
-                hint: pc.dim("Coming soon (Prisma)"),
               },
 
               {
@@ -153,15 +153,16 @@ async function main() {
   //Stop if user selected a "coming soon" DB
   const comingSoonDBs: ProjectConfig["db"][] = [
     "mysql",
-    "sqlite",
-    "postgresql",
+    "sqlite"
   ];
 
   if (comingSoonDBs.includes(project.db)) {
     p.cancel(
       pc.yellow(
         `🚧 ${project.db.toUpperCase()} support is coming soon!\n\n` +
-          pc.dim("Currently only MongoDB is supported.\n") +
+          pc.dim(
+            "Currently only MongoDB and PostgreSQL (only for js project) supported.\n"
+          ) +
           pc.dim("Stay tuned for future updates 🚀")
       )
     );
