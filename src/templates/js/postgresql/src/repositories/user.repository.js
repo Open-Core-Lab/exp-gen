@@ -1,10 +1,12 @@
-import pool from "../configs/db.js"; 
+import pool from "../configs/db.js";
 
 //table need to be created before using these functions
 // CREATE TABLE users (
 //   id SERIAL PRIMARY KEY,
 //   name VARCHAR(100) NOT NULL,
-//   email VARCHAR(100) UNIQUE NOT NULL
+//   email VARCHAR(100) UNIQUE NOT NULL,
+//   password VARCHAR(255) NOT NULL,
+//   age INTEGER DEFAULT 0
 // );
 export const getAllUsers = async () => {
   const result = await pool.query("SELECT * FROM users ORDER BY id");
@@ -16,10 +18,10 @@ export const getUserById = async (id) => {
   return result.rows[0];
 };
 
-export const createUser = async ({ name, email }) => {
+export const createUser = async ({ name, email, password, age }) => {
   const result = await pool.query(
-    "INSERT INTO users(name, email) VALUES($1, $2) RETURNING *",
-    [name, email]
+    "INSERT INTO users(name, email, password, age) VALUES($1, $2, $3, $4) RETURNING *",
+    [name, email, password, age]
   );
   return result.rows[0];
 };
@@ -37,6 +39,8 @@ export const deleteUser = async (id) => {
 };
 
 export const findByEmail = async (email) => {
-  const result = await pool.query("SELECT * FROM users WHERE email=$1", [email]);
+  const result = await pool.query("SELECT * FROM users WHERE email=$1", [
+    email,
+  ]);
   return result.rows[0];
 };
