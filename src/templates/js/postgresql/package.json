@@ -1,0 +1,29 @@
+{
+  "name": "js-postgresql-api",
+  "version": "1.0.0",
+  "description": "Modern Express API with PostgreSQL, ES Modules, and async CRUD",
+  "type": "module",
+  "main": "./src/app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "http-errors": "^2.0.0",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.20.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "nodemon": "^3.1.14",
+    "prettier": "^3.2.5"
+  }
+}
