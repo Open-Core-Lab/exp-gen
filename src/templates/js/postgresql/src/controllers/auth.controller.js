@@ -2,7 +2,7 @@ import asyncHandler from "../utils/asyncHandler.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { successResponse, errorResponse } from "../utils/response.js";
-import{ findByEmail } from "../repositories/user.repository.js";
+import { findByEmail, createUser } from "../repositories/user.repository.js";
 
 // Login endpoint
 export const login = asyncHandler(async (req, res) => {
@@ -11,7 +11,7 @@ export const login = asyncHandler(async (req, res) => {
 
     // Find user
     // const user = await User.findOne({ email });
-        const user = await findByEmail(email);
+    const user = await findByEmail(email);
     if (!user) {
       return res.status(401).json(errorResponse(null, "Invalid credentials"));
     }
@@ -40,7 +40,7 @@ export const signup = asyncHandler(async (req, res) => {
     const { name, email, password, age } = req.body;
 
     // Check if user already exists
-    const existingUser = await User.findOne({ email });
+    const existingUser = await findByEmail(email);
     if (existingUser) {
       return res.status(400).json(errorResponse(null, "User already exists"));
     }
@@ -49,7 +49,7 @@ export const signup = asyncHandler(async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create user
-    const newUser = await User.create({
+    const newUser = await createUser({
       name,
       email,
       password: hashedPassword,
@@ -58,7 +58,7 @@ export const signup = asyncHandler(async (req, res) => {
 
     // Generate token
     const token = jwt.sign(
-      { id: newUser._id, email: newUser.email },
+      { id: newUser.id, email: newUser.email },
       process.env.JWT_SECRET,
       { expiresIn: process.env.JWT_EXPIRES_IN || "1d" }
     );
@@ -67,6 +67,6 @@ export const signup = asyncHandler(async (req, res) => {
       .status(201)
       .json(successResponse({ token, user: newUser }, "Signup successful"));
   } catch (error) {
-    res.status(500).json(errorResponse(error, "Login failed"));
+    res.status(500).json(errorResponse(error, "Signup failed"));
   }
 });
