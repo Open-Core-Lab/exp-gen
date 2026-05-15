@@ -35,7 +35,7 @@ Run `exp` in your terminal. The interactive CLI (powered by `@clack/prompts`) wi
 - **Project Name:** Enter your project folder name (e.g., `my-api`).
 - **Language:** Choose between **TypeScript** (Recommended) or **JavaScript**.
 - **Database:** Select your preferred database.
-  - _Currently Supported:_ **MongoDB** (via Mongoose).
+  - _Currently Supported:_ **MongoDB** (via Mongoose) and **PostgreSQL** (only for JavaScript projects).
   - _Coming Soon:_ MySQL, PostgreSQL (Prisma), and SQLite.
 - **Install Dependencies:** Choose `Yes` to let the CLI run `npm install` for you automatically.
 
