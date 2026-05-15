@@ -3,8 +3,35 @@
 import * as p from "@clack/prompts";
 import pc from "picocolors";
 import logSymbols from "log-symbols";
+import fs from "fs/promises";
+import path from "path";
+import { fileURLToPath } from "url";
 import type { ProjectConfig } from "./type/projectConfig.js";
 import scaffoldProject from "./scaffoldProject.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+async function getAppVersion(): Promise<string> {
+  const candidates = [
+    path.resolve(__dirname, "../package-config/package.json"),
+    path.resolve(__dirname, "../package.json"),
+  ];
+
+  for (const configPath of candidates) {
+    try {
+      const raw = await fs.readFile(configPath, "utf8");
+      const json = JSON.parse(raw);
+      if (json?.version) {
+        return json.version;
+      }
+    } catch {
+      // try next path
+    }
+  }
+
+  throw new Error("Unable to resolve app version from package metadata.");
+}
 
 async function safePrompt<T>(value: Promise<T | symbol>): Promise<T> {
   const result = await value;
@@ -21,13 +48,16 @@ async function safePrompt<T>(value: Promise<T | symbol>): Promise<T> {
 async function main() {
   console.clear();
 
+  const appVersion = await getAppVersion();
+
   p.intro(
-    `${pc.bgCyan(pc.black(" EXPRESS GENERATOR "))} ${pc.dim("v1.0.0")}\n${pc.dim(
+    `${pc.bgCyan(pc.black(" EXPRESS GENERATOR "))} ${pc.dim(`v${appVersion}`)}\n${pc.dim(
       "Scaffold your Express API in seconds 🚀"
     )}`
   );
 
   const project = await p.group<ProjectConfig>(
+
     {
       name: () =>
         safePrompt(
