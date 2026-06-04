@@ -9,6 +9,7 @@ export default defineConfig([
       "node_modules/**",
       "commitlint.config.ts",
       "src/templates/ts/**",
+      "src/templates/js/**",
       "dist/**/*",
     ],
   },
