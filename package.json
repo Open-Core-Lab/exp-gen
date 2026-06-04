@@ -1,6 +1,6 @@
 {
   "name": "@madhusha_99/exp-gen",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "This is a very simple and small generator for creating Express.js projects with TypeScript or Javascript. You can use it to quickly start a new API project.",
   "main": "bin/script.ts",
   "bin": {
