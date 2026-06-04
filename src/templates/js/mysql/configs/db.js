@@ -16,8 +16,13 @@ export const connectDB = async () => {
     });
 
     // Simple test query
-    const [rows] = await pool.query("SELECT 1 + 1 AS solution");
-    console.log("The solution is:", rows[0].solution);
+    const connection = await pool.getConnection();
+    try {
+      const [rows] = await connection.query("SELECT 1 + 1 AS solution");
+      console.log("The solution is:", rows[0].solution);
+    } finally {
+      connection.release();
+    }
 
     console.log(`✅ MysqlDB Connected: ${config.db.host}`);
   } catch (error) {
@@ -33,8 +38,13 @@ export const getPool = () => {
   return pool;
 };
 
-export const query = async (sql, params) => {
+export const query = async (sql, params = []) => {
   const p = getPool();
-  const [rows] = await p.query(sql, params);
-  return rows;
+  try {
+    const [rows, fields] = await p.query(sql, params);
+    return rows;
+  } catch (error) {
+    console.error("❌ Query error:", error.message);
+    throw error;
+  }
 };

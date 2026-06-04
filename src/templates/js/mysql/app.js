@@ -2,13 +2,13 @@ import express from "express";
 import morgan from "morgan";
 import createError from "http-errors";
 import cors from "cors";
-import dotenv from "dotenv";
 import apiRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
 import { connectDB } from "./configs/db.js";
+import { ensureUsersTable } from "./models/user.model.js";
 
-dotenv.config();
-connectDB();
+await connectDB();
+await ensureUsersTable();
 
 const app = express();
 
