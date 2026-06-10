@@ -62,7 +62,11 @@ export const getDB = () => {
 export const query = async (sql, params = []) => {
   try {
     const statement = sql.trim().split(" ")[0].toUpperCase();
-    if (statement === "SELECT" || statement === "PRAGMA" || statement === "WITH") {
+    if (
+      statement === "SELECT" ||
+      statement === "PRAGMA" ||
+      statement === "WITH"
+    ) {
       return await all(sql, params);
     }
     return await run(sql, params);
