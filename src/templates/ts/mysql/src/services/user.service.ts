@@ -17,7 +17,10 @@ export const createUser = async (data: Partial<User>): Promise<User> => {
   return await userRepo.createUser(data);
 };
 
-export const updateUser = async (id: number, data: Partial<User>): Promise<User | null> => {
+export const updateUser = async (
+  id: number,
+  data: Partial<User>
+): Promise<User | null> => {
   return await userRepo.updateUser(id, data);
 };
 

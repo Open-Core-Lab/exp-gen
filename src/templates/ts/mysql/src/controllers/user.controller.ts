@@ -16,7 +16,10 @@ export const getUser = asyncHandler(async (req: Request, res: Response) => {
   try {
     const id = Number(req.params.id);
     const user = await userService.getUserById(id);
-    if (!user) return res.status(404).json(errorResponse({ status: 404 }, "User not found"));
+    if (!user)
+      return res
+        .status(404)
+        .json(errorResponse({ status: 404 }, "User not found"));
     res.json(successResponse(user));
   } catch (error) {
     res.status(500).json(errorResponse(error, "Failed to fetch user"));
@@ -38,7 +41,10 @@ export const updateUser = asyncHandler(async (req: Request, res: Response) => {
     const id = Number(req.params.id);
     const data = req.body;
     const updated = await userService.updateUser(id, data);
-    if (!updated) return res.status(404).json(errorResponse({ status: 404 }, "User not found"));
+    if (!updated)
+      return res
+        .status(404)
+        .json(errorResponse({ status: 404 }, "User not found"));
     res.json(successResponse(updated, "User updated"));
   } catch (error) {
     res.status(500).json(errorResponse(error, "Failed to update user"));
@@ -49,7 +55,10 @@ export const deleteUser = asyncHandler(async (req: Request, res: Response) => {
   try {
     const id = Number(req.params.id);
     const deleted = await userService.deleteUser(id);
-    if (!deleted) return res.status(404).json(errorResponse({ status: 404 }, "User not found"));
+    if (!deleted)
+      return res
+        .status(404)
+        .json(errorResponse({ status: 404 }, "User not found"));
     res.json(successResponse(deleted, "User deleted"));
   } catch (error) {
     res.status(500).json(errorResponse(error, "Failed to delete user"));

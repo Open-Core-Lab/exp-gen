@@ -22,7 +22,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 // Routes
-app.get("/", (_req: Request, res: Response) => res.json({ message: "API is running 🚀" }));
+app.get("/", (_req: Request, res: Response) =>
+  res.json({ message: "API is running 🚀" })
+);
 app.use("/api", apiRoutes);
 app.use("/api/auth", authRoutes);
 
@@ -40,4 +42,6 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`🚀 Server running @ http://localhost:${PORT}`));
+app.listen(PORT, () =>
+  console.log(`🚀 Server running @ http://localhost:${PORT}`)
+);

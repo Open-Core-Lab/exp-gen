@@ -35,10 +35,13 @@ export const createUser = async (data: Partial<User>): Promise<User> => {
     throw new Error("Failed to create user - no insert ID returned");
   }
 
-  return await getUserById(insertResult.insertId) as User;
+  return (await getUserById(insertResult.insertId)) as User;
 };
 
-export const updateUser = async (id: number, data: Partial<User>): Promise<User | null> => {
+export const updateUser = async (
+  id: number,
+  data: Partial<User>
+): Promise<User | null> => {
   const fields: string[] = [];
   const params: any[] = [];
 
