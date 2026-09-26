@@ -88,7 +88,7 @@ Supported languages
 | Database            | JavaScript | TypeScript | Driver / ORM | Status  |
 | ------------------- | :--------: | :--------: | ------------ | :-----: |
 | MongoDB             |     ✅     |     ✅     | Mongoose     | Stable  |
-| MySQL               |     ✅     |     ❌     | mysql2       | Stable  |
+| MySQL               |     ✅     |     ✅     | mysql2       | Stable  |
 | SQLite              |     ✅     |     ❌     | sqlite3      | Stable  |
 | PostgreSQL          |     ✅     |     ❌     | pg           | Stable  |
 | None (No Database)  |     ✅     |     ✅     | —            | Stable  |
